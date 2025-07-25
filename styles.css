@@ -1,0 +1,210 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #fefcf7;
+  color: #2d3e2f;
+  line-height: 1.6;
+  max-width: 1400px; /* ✅ élargir à 1400px */
+  margin: auto;
+  padding: 0 3rem;
+}
+
+
+header {
+  background: #e6f4e9;
+  padding: 3rem 2.5rem;
+  border-radius: 0 0 16px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+
+.header-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #2e5939;
+  text-decoration: none;
+}
+
+nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+nav a {
+  color: #6b4e2e;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+.search-box input {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+/* Layout des articles avec image à droite */
+article {
+  display: flex;
+  gap: 1rem;
+  background: #ffffff;
+  border: 1px solid #e9e4d9;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+}
+
+.article-content {
+  flex: 1;
+}
+
+article h2 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  color: #2e5939;
+}
+
+article h2 a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.date {
+  font-size: 0.85rem;
+  color: #888;
+  margin-bottom: 0.75rem;
+}
+
+article img {
+  width: 200px;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+/* ... header, body, nav, search box, etc. ... restent inchangés */
+
+.featured-article {
+  background: #fff;
+  border: 1px solid #e9e4d9;
+  border-radius: 10px;
+  padding: 1rem;
+  width: calc(33.3333% - 1.33rem); /* 3 articles par ligne */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+}
+
+.featured-article img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 0.75rem;
+}
+
+.featured-article h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.4rem;
+  color: #2e5939;
+}
+
+.featured-article .date {
+  font-size: 0.8rem;
+  color: #888;
+  margin-bottom: 0.5rem;
+}
+
+.featured-article p {
+  font-size: 0.9rem;
+}
+
+/* Liste des autres articles */
+.article-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.article-item {
+  background: #fff;
+  border: 1px solid #e9e4d9;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.article-item h4 {
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+  color: #2e5939;
+}
+
+.article-item .date {
+  font-size: 0.8rem;
+  color: #888;
+  margin-bottom: 0.5rem;
+}
+
+.article-item p {
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+}
+
+.read-more {
+  display: inline-block;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  background-color: #e1e9dc;
+  color: #2e5939;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.read-more:hover {
+  background-color: #cfe3cd;
+}
+
+/* Pagination style simple */
+.pagination {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.pagination a {
+  margin: 0 6px;
+  padding: 6px 12px;
+  background: #e1e9dc;
+  color: #2e5939;
+  border-radius: 4px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.pagination a.active {
+  background: #2e5939;
+  color: #fff;
+}
+
+footer {
+  text-align: center;
+  color: #aaa;
+  margin-top: 4rem;
+  font-size: 0.85rem;
+}
