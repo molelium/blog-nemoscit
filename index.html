@@ -3,72 +3,106 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Mon Blog</title>
+  <title>Mon Blog Minimaliste</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <header>
-  <a href="index.html" class="header-title">Mon Blog</a>
   <nav>
-    <a href="#">À propos</a>
-    <a href="#">Contact</a>
+    <a href="#" class="nav-link">Blog</a>
+    <a href="#" class="nav-link">À propos</a>
+    <a href="#" class="nav-link">Contact</a>
   </nav>
-  <div class="search-box">
-    <input type="text" placeholder="Rechercher...">
+  <div class="search-container">
+    <input type="text" placeholder="Rechercher un article..." class="search-input">
+    <div class="search-bubble">🔍</div>
   </div>
+  <h1 class="header-title">Mon Blog Minimaliste</h1>
 </header>
 
 <main>
-
-  <!-- 🟢 Top 3 derniers articles -->
+  <!-- 3 derniers articles en colonnes -->
   <section class="featured-articles">
-    <div class="featured-article">
-      <img src="assets/cover1.jpg" alt="Article 1">
-      <h3><a href="article1.html">Créer un blog en HTML</a></h3>
-      <p class="date">25 juillet 2025</p>
-      <p>Apprenez à créer un blog simple et élégant sans framework.</p>
-    </div>
+    <article class="featured-card">
+      <img src="assets/cover1.jpg" alt="Couverture article 1" class="featured-image">
+      <div class="featured-content">
+        <h3 class="featured-title">Créer un blog minimaliste</h3>
+        <p class="featured-description">Découvrez comment créer un blog élégant et épuré avec HTML et CSS. Un guide complet pour débuter.</p>
+        <time class="featured-date">25 décembre 2024</time>
+      </div>
+    </article>
 
-    <div class="featured-article">
-      <img src="assets/cover2.jpg" alt="Article 2">
-      <h3><a href="article2.html">Pourquoi choisir le minimalisme</a></h3>
-      <p class="date">24 juillet 2025</p>
-      <p>Adoptez un mode de vie allégé pour mieux vous concentrer.</p>
-    </div>
+    <article class="featured-card">
+      <img src="assets/cover2.jpg" alt="Couverture article 2" class="featured-image">
+      <div class="featured-content">
+        <h3 class="featured-title">L'art du design épuré</h3>
+        <p class="featured-description">Pourquoi le minimalisme en design web améliore l'expérience utilisateur et comment l'appliquer.</p>
+        <time class="featured-date">22 décembre 2024</time>
+      </div>
+    </article>
 
-    <div class="featured-article">
-      <img src="assets/cover3.jpg" alt="Article 3">
-      <h3><a href="article3.html">Débuter avec CSS</a></h3>
-      <p class="date">22 juillet 2025</p>
-      <p>Comprenez les bases du CSS pour styliser vos pages web.</p>
-    </div>
+    <article class="featured-card">
+      <img src="assets/cover3.jpg" alt="Couverture article 3" class="featured-image">
+      <div class="featured-content">
+        <h3 class="featured-title">CSS moderne et flexible</h3>
+        <p class="featured-description">Maîtrisez Flexbox et Grid pour créer des mises en page responsives et modernes.</p>
+        <time class="featured-date">20 décembre 2024</time>
+      </div>
+    </article>
   </section>
 
-  <!-- 🟤 Liste des autres articles -->
-  <section class="article-list">
-    <div class="article-item">
-      <h4><a href="article4.html">Apprendre le Flexbox</a></h4>
-      <p class="date">20 juillet 2025</p>
-      <p>Flexbox est une méthode moderne pour aligner les éléments en CSS.</p>
-      <a href="article4.html" class="read-more">Read more →</a>
-    </div>
+  <!-- Liste des autres articles -->
+  <section class="articles-list">
+    <article class="article-item">
+      <div class="article-header">
+        <h4 class="article-title">Optimiser les performances web</h4>
+        <time class="article-date">18 décembre 2024</time>
+      </div>
+      <p class="article-description">Techniques avancées pour améliorer la vitesse de chargement de votre site web et offrir une meilleure expérience utilisateur.</p>
+      <a href="#" class="read-more-btn">Read more</a>
+    </article>
 
-    <div class="article-item">
-      <h4><a href="article5.html">Typographie sur le web</a></h4>
-      <p class="date">18 juillet 2025</p>
-      <p>La typographie est essentielle pour une bonne lisibilité sur écran.</p>
-      <a href="article5.html" class="read-more">Read more →</a>
-    </div>
+    <article class="article-item">
+      <div class="article-header">
+        <h4 class="article-title">Accessibilité web essentielle</h4>
+        <time class="article-date">15 décembre 2024</time>
+      </div>
+      <p class="article-description">Comment rendre votre site accessible à tous, avec des techniques pratiques et des outils pour tester l'accessibilité.</p>
+      <a href="#" class="read-more-btn">Read more</a>
+    </article>
 
-    <!-- Ajoute autant d'articles que tu veux ici... -->
+    <article class="article-item">
+      <div class="article-header">
+        <h4 class="article-title">Typographie pour le web</h4>
+        <time class="article-date">12 décembre 2024</time>
+      </div>
+      <p class="article-description">Choisir et utiliser les bonnes polices pour améliorer la lisibilité et l'esthétique de votre contenu web.</p>
+      <a href="#" class="read-more-btn">Read more</a>
+    </article>
 
+    <article class="article-item">
+      <div class="article-header">
+        <h4 class="article-title">JavaScript moderne en 2024</h4>
+        <time class="article-date">10 décembre 2024</time>
+      </div>
+      <p class="article-description">Les nouvelles fonctionnalités ES2024 et comment les utiliser pour écrire du code JavaScript plus efficace.</p>
+      <a href="#" class="read-more-btn">Read more</a>
+    </article>
+
+    <article class="article-item">
+      <div class="article-header">
+        <h4 class="article-title">Débuter avec Git et GitHub</h4>
+        <time class="article-date">8 décembre 2024</time>
+      </div>
+      <p class="article-description">Un guide complet pour maîtriser le contrôle de version avec Git et collaborer efficacement sur GitHub.</p>
+      <a href="#" class="read-more-btn">Read more</a>
+    </article>
   </section>
 </main>
 
-
 <footer>
-  <p>&copy; 2025 Mon Blog. Tous droits réservés.</p>
+  <p>&copy; 2024 Mon Blog Minimaliste. Fait avec ❤️</p>
 </footer>
 
 </body>
