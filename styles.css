@@ -7,7 +7,7 @@
 
 body {
   font-family: Verdana, Geneva, sans-serif;
-  background: #f6f6ef; /* Fond YC */
+  background: #f0f8f0; /* Fond vert très clair */
   color: #000000; /* Texte principal noir */
   line-height: 1.4;
   font-size: 13px;
@@ -22,9 +22,10 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 2rem 1rem;
-  border-bottom: 1px solid #ff6600; /* Bordure orange YC */
+  border-bottom: 1px solid #004d00; /* Bordure vert foncé */
   margin-bottom: 2rem;
-  background: #f6f6ef; /* Fond YC */
+  background: #f0f8f0; /* Fond vert très clair */
+  border-radius: 12px;
 }
 
 /* Titre à gauche */
@@ -50,11 +51,13 @@ nav {
   font-weight: normal;
   font-size: 13px;
   transition: color 0.2s ease;
-  padding: 5px 8px;
+  padding: 8px 12px;
+  border-radius: 8px;
 }
 
 .nav-link:hover {
-  color: #ff6600; /* Orange YC pour hover */
+  color: #004d00; /* Vert foncé pour hover */
+  background: #ffffff; /* Fond blanc */
 }
 
 /* Search container à droite - sans icône */
@@ -66,9 +69,9 @@ nav {
 }
 
 .search-input {
-  padding: 4px 8px;
-  border: 1px solid #000000; /* Bordure noire */
-  border-radius: 0;
+  padding: 8px 12px;
+  border: 1px solid #004d00; /* Bordure vert foncé */
+  border-radius: 20px;
   background: #ffffff; /* Fond blanc */
   color: #000000; /* Texte principal */
   font-size: 13px;
@@ -78,11 +81,12 @@ nav {
 }
 
 .search-input:focus {
-  border-color: #ff6600; /* Orange YC */
+  border-color: #004d00; /* Vert foncé */
+  box-shadow: 0 0 0 2px rgba(0, 77, 0, 0.1);
 }
 
 .search-input::placeholder {
-  color: #828282; /* Gris YC */
+  color: #666666; /* Gris foncé */
 }
 
 /* Masquer la bulle de recherche */
@@ -110,7 +114,8 @@ nav {
 
 .featured-card {
   background: #ffffff; /* Fond blanc */
-  border: 1px solid #000000; /* Bordure noire */
+  border: 1px solid #004d00; /* Bordure vert foncé */
+  border-radius: 16px; /* Bords arrondis */
   overflow: hidden;
   transition: all 0.2s ease;
   position: relative;
@@ -126,7 +131,8 @@ nav {
 }
 
 .featured-card:hover {
-  background: #fffbf0; /* Fond légèrement teinté au hover */
+  background: #f0f8f0; /* Fond vert très clair au hover */
+  border-color: #004d00; /* Vert foncé */
 }
 
 .featured-image {
@@ -134,7 +140,6 @@ nav {
   height: 160px;
   object-fit: cover;
   display: block;
-  border-bottom: 1px solid #000000;
 }
 
 .featured-content {
@@ -155,7 +160,7 @@ nav {
 }
 
 .featured-description {
-  color: #828282; /* Gris YC */
+  color: #666666; /* Gris foncé */
   margin-bottom: 10px;
   font-size: 12px;
   line-height: 1.4;
@@ -163,29 +168,39 @@ nav {
 }
 
 .featured-date {
-  color: #ff6600; /* Orange YC */
+  color: #004d00; /* Vert foncé pour accent */
   font-size: 11px;
   font-weight: normal;
   margin-top: auto; /* Pousse la date vers le bas pour l'alignement */
   align-self: flex-start;
+  background: #f0f8f0; /* Fond vert très clair */
+  padding: 4px 8px;
+  border-radius: 8px;
 }
 
-/* Section liste des articles */
+/* Section liste des articles - sans démarcations */
 .articles-list {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 0; /* Supprime l'espacement entre articles */
 }
 
 .article-item {
-  background: #ffffff; /* Fond blanc */
-  border: 1px solid #000000; /* Bordure noire */
-  padding: 15px;
+  background: transparent; /* Fond transparent */
+  border: none; /* Supprime les bordures */
+  padding: 20px 0; /* Padding vertical seulement */
   transition: background 0.2s ease;
+  border-bottom: 1px solid #e0e0e0; /* Ligne de séparation discrète */
+}
+
+.article-item:last-child {
+  border-bottom: none; /* Supprime la dernière bordure */
 }
 
 .article-item:hover {
-  background: #fffbf0; /* Fond légèrement teinté */
+  background: rgba(240, 248, 240, 0.5); /* Fond vert très clair semi-transparent */
+  border-radius: 12px; /* Bords arrondis au hover */
+  padding: 20px 15px; /* Ajoute padding horizontal au hover */
 }
 
 .article-header {
@@ -205,14 +220,17 @@ nav {
 }
 
 .article-date {
-  color: #ff6600; /* Orange YC */
+  color: #004d00; /* Vert foncé pour accent */
   font-size: 11px;
   font-weight: normal;
   white-space: nowrap;
+  background: #f0f8f0; /* Fond vert très clair */
+  padding: 4px 8px;
+  border-radius: 8px;
 }
 
 .article-description {
-  color: #828282; /* Gris YC */
+  color: #666666; /* Gris foncé */
   margin-bottom: 10px;
   line-height: 1.4;
   font-size: 12px;
@@ -220,11 +238,12 @@ nav {
 
 .read-more-btn {
   display: inline-block;
-  padding: 4px 8px;
+  padding: 8px 16px;
   background: #ffffff; /* Fond blanc */
   color: #000000; /* Texte principal */
   text-decoration: none;
-  border: 1px solid #000000; /* Bordure noire */
+  border: 1px solid #004d00; /* Bordure vert foncé */
+  border-radius: 20px; /* Bords arrondis */
   font-size: 11px;
   font-weight: normal;
   transition: all 0.2s ease;
@@ -233,9 +252,9 @@ nav {
 }
 
 .read-more-btn:hover {
-  background: #ff6600; /* Orange YC */
+  background: #004d00; /* Vert foncé */
   color: #ffffff; /* Texte blanc */
-  border-color: #ff6600; /* Bordure orange */
+  border-color: #004d00; /* Bordure vert foncé */
 }
 
 /* Footer */
@@ -243,10 +262,11 @@ footer {
   margin-top: 40px;
   padding: 20px 0;
   text-align: center;
-  color: #828282; /* Gris YC */
+  color: #666666; /* Gris foncé */
   font-size: 11px;
-  border-top: 1px solid #000000; /* Bordure noire */
-  background: #f6f6ef; /* Fond YC */
+  border-top: 1px solid #004d00; /* Bordure vert foncé */
+  background: #f0f8f0; /* Fond vert très clair */
+  border-radius: 12px;
 }
 
 /* Responsive design */
@@ -333,7 +353,11 @@ footer {
   }
   
   .article-item {
-    padding: 12px;
+    padding: 15px 0;
+  }
+  
+  .article-item:hover {
+    padding: 15px 12px;
   }
 }
 
@@ -345,7 +369,7 @@ footer {
   
   .nav-link {
     font-size: 12px;
-    padding: 4px 6px;
+    padding: 6px 10px;
   }
   
   .search-input {
@@ -362,7 +386,11 @@ footer {
   }
   
   .article-item {
-    padding: 10px;
+    padding: 12px 0;
+  }
+  
+  .article-item:hover {
+    padding: 12px 10px;
   }
   
   .header-title {
