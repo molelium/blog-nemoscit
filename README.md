@@ -24,7 +24,7 @@
      ```
    - Lance le script :
      ```bash
-     node build_articles.js
+     node clean_and_build.js
      ```
    - Le script va :
      - Convertir tous les articles `.md` en HTML
@@ -32,6 +32,7 @@
      - Créer une page HTML dédiée pour chaque article
      - Ajouter les articles sur la page d'accueil avec des liens cliquables
      - Trier les articles du plus récent au plus ancien
+     - **Nettoyer automatiquement** les fichiers HTML pour éviter les doublons
 
 4. **Navigation**
    - Les articles sur la page d'accueil sont maintenant cliquables
@@ -67,6 +68,8 @@ Et même des images :
 - ✅ **Tri chronologique** automatique
 - ✅ **Navigation complète** entre toutes les pages
 - ✅ **Design responsive** pour mobile et desktop
+- ✅ **Nettoyage automatique** des fichiers HTML
+- ✅ **Détection des modifications** avec dates de mise à jour
 
 ---
 

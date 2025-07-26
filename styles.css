@@ -276,6 +276,27 @@ footer {
   padding: 0;
 }
 
+.article-full .article-dates {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.article-full .article-date {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
+  color: #999;
+  font-weight: 300;
+}
+
+.article-full .article-modified {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.8rem;
+  color: #bbb;
+  font-weight: 300;
+  font-style: italic;
+}
+
 /* Amélioration des liens dans les cartes d'articles */
 .article-card .article-title a {
   transition: color 0.3s ease;
