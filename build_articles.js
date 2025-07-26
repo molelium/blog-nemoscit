@@ -37,6 +37,11 @@ function extractTitleFromMarkdown(content) {
 }
 
 function createArticlePage(article) {
+  // Supprimer le titre du contenu HTML pour éviter le doublon
+  let contentHtml = article.html;
+  // Supprime le premier H1 ou H2 du contenu
+  contentHtml = contentHtml.replace(/<h[12][^>]*>.*?<\/h[12]>/s, '');
+  
   const template = `<!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -67,7 +72,7 @@ function createArticlePage(article) {
       <time class="article-date">${article.date.toLocaleDateString('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' })}</time>
     </header>
     <div class="article-content">
-      ${article.html}
+      ${contentHtml}
     </div>
   </article>
 </main>
@@ -87,6 +92,31 @@ function createArticlePage(article) {
   const articleFilename = `${article.slug}.html`;
   fs.writeFileSync(articleFilename, template, 'utf-8');
   return articleFilename;
+}
+
+function addArticleToCategoryPage(article) {
+  const categoryPage = `${article.category}.html`;
+  if (!fs.existsSync(categoryPage)) {
+    console.log(`Page ${categoryPage} n'existe pas, création...`);
+    return;
+  }
+  
+  let html = fs.readFileSync(categoryPage, 'utf-8');
+  const pattern = /(<div class="articles-grid">)(.*?)(<\/div>)/s;
+  const m = html.match(pattern);
+  if (!m) {
+    console.log(`Impossible de trouver la section articles-grid dans ${categoryPage}`);
+    return;
+  }
+  
+  const articlePage = createArticlePage(article);
+  const excerpt = article.html.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim().substring(0, 150);
+  const articleHtml = `\n<article class="article-card" data-category="${article.category}">\n  <div class="article-content">\n    <h3 class="article-title"><a href="${articlePage}" style="text-decoration: none; color: inherit;">${article.title}</a></h3>\n    <p class="article-excerpt">${excerpt}${excerpt.length >= 150 ? '...' : ''}</p>\n    <div class="article-date">${article.date.toLocaleDateString('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' })}</div>\n  </div>\n</article>\n`;
+  
+  // Ajoute l'article au début de la liste (plus récent en premier)
+  html = html.replace(pattern, `$1\n${articleHtml}\n$3`);
+  fs.writeFileSync(categoryPage, html, 'utf-8');
+  console.log(`Article ajouté à ${categoryPage}`);
 }
 
 function getArticles() {
@@ -126,6 +156,9 @@ function injectArticles(articles) {
     // Crée un extrait propre (sans HTML, max 150 caractères)
     const excerpt = art.html.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim().substring(0, 150);
     articlesHtml += `\n<article class="article-card" data-category="${art.category}">\n  <div class="article-content">\n    <h3 class="article-title"><a href="${articlePage}" style="text-decoration: none; color: inherit;">${art.title}</a></h3>\n    <p class="article-excerpt">${excerpt}${excerpt.length >= 150 ? '...' : ''}</p>\n    <div class="article-date">${art.date.toLocaleDateString('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' })}</div>\n  </div>\n</article>\n`;
+    
+    // Ajoute aussi l'article à sa page de catégorie
+    addArticleToCategoryPage(art);
   }
   
   // Remplace le contenu
