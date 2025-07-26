@@ -31,12 +31,7 @@ header {
   background: linear-gradient(135deg, #fefcf8 0%, #f8f6f2 100%);
   border-radius: 20px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
-}
-
-header:hover {
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-  transform: translateY(-2px);
+  /* Supprimé la transition et l'effet hover du header */
 }
 
 /* Titre à gauche */
@@ -46,12 +41,7 @@ header:hover {
   font-weight: 700;
   flex-shrink: 0;
   letter-spacing: -0.5px;
-  transition: all 0.3s ease;
-}
-
-.header-title:hover {
-  color: #004d00;
-  transform: scale(1.02);
+  /* Supprimé la transition et l'effet hover */
 }
 
 /* Navigation au centre */
@@ -91,7 +81,7 @@ nav {
 }
 
 .nav-link:hover {
-  color: #004d00;
+  /* Gardé seulement l'effet d'élévation sans changement de couleur */
   background: rgba(255, 255, 255, 0.8);
   transform: translateY(-3px);
   box-shadow: 0 8px 25px rgba(0, 77, 0, 0.15);
@@ -227,11 +217,7 @@ nav {
   margin-bottom: 12px;
   line-height: 1.4;
   flex-grow: 1;
-  transition: color 0.3s ease;
-}
-
-.featured-card:hover .featured-title {
-  color: #004d00;
+  /* Supprimé le changement de couleur au hover */
 }
 
 .featured-description {
@@ -253,13 +239,7 @@ nav {
   padding: 6px 12px;
   border-radius: 12px;
   backdrop-filter: blur(5px);
-  transition: all 0.3s ease;
-}
-
-.featured-card:hover .featured-date {
-  background: linear-gradient(135deg, #004d00 0%, #006600 100%);
-  color: white;
-  transform: translateY(-2px);
+  /* Supprimé le changement de couleur au hover */
 }
 
 /* Section liste des articles - sans démarcations */
@@ -326,7 +306,7 @@ nav {
 }
 
 .article-item:hover .article-title {
-  color: #004d00;
+  /* Gardé seulement l'effet de translation sans changement de couleur */
   transform: translateX(4px);
 }
 
@@ -338,14 +318,8 @@ nav {
   background: linear-gradient(135deg, rgba(0, 77, 0, 0.1) 0%, rgba(0, 77, 0, 0.15) 100%);
   padding: 6px 12px;
   border-radius: 12px;
-  transition: all 0.3s ease;
   backdrop-filter: blur(5px);
-}
-
-.article-item:hover .article-date {
-  background: linear-gradient(135deg, #004d00 0%, #006600 100%);
-  color: white;
-  transform: translateY(-2px);
+  /* Supprimé le changement de couleur au hover */
 }
 
 .article-description {
@@ -354,11 +328,7 @@ nav {
   line-height: 1.6;
   font-size: 13px;
   font-weight: 400;
-  transition: color 0.3s ease;
-}
-
-.article-item:hover .article-description {
-  color: #555;
+  /* Supprimé le changement de couleur au hover */
 }
 
 .read-more-btn {
@@ -395,29 +365,102 @@ nav {
 }
 
 .read-more-btn:hover {
-  background: linear-gradient(135deg, #004d00 0%, #006600 100%);
-  color: white;
-  border-color: #004d00;
+  /* Gardé seulement l'effet d'élévation sans changement de couleur de fond */
   transform: translateY(-3px);
   box-shadow: 0 8px 25px rgba(0, 77, 0, 0.25);
 }
 
-/* Footer */
+/* Footer avec navigation réorganisée */
 footer {
-  margin-top: 50px;
-  padding: 30px 0;
-  text-align: center;
-  color: #666;
-  font-size: 12px;
-  font-weight: 400;
+  margin-top: 60px;
+  padding: 40px 0;
   border-top: 2px solid rgba(0, 77, 0, 0.1);
   background: linear-gradient(135deg, #fefcf8 0%, #f8f6f2 100%);
   border-radius: 20px;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.footer-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.footer-title {
+  color: #1a1a1a;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+
+.footer-links {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footer-link {
+  color: #666;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.footer-link:hover {
+  background: rgba(255, 255, 255, 0.8);
+  border-color: rgba(0, 77, 0, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 77, 0, 0.1);
+}
+
+.footer-search {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.footer-search-label {
+  color: #666;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.footer-search-input {
+  padding: 10px 16px;
+  border: 1px solid rgba(0, 77, 0, 0.2);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #1a1a1a;
+  font-size: 13px;
+  width: 200px;
+  outline: none;
+  font-family: 'Noto Sans', sans-serif;
   transition: all 0.3s ease;
 }
 
-footer:hover {
-  background: linear-gradient(135deg, #f8f6f2 0%, #f4f2ee 100%);
+.footer-search-input:focus {
+  border-color: #004d00;
+  box-shadow: 0 0 0 3px rgba(0, 77, 0, 0.1);
+}
+
+.footer-copyright {
+  color: #888;
+  font-size: 12px;
+  font-weight: 400;
+  text-align: center;
 }
 
 /* Responsive design */
@@ -443,6 +486,10 @@ footer:hover {
   
   .search-input {
     width: 200px;
+  }
+  
+  .footer-links {
+    gap: 24px;
   }
 }
 
@@ -511,6 +558,16 @@ footer:hover {
   .article-item:hover {
     padding: 20px 16px;
   }
+  
+  .footer-links {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+  
+  .footer-search-input {
+    width: 240px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -546,5 +603,9 @@ footer:hover {
   
   .header-title {
     font-size: 18px;
+  }
+  
+  .footer-search-input {
+    width: 200px;
   }
 }
