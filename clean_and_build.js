@@ -11,6 +11,91 @@ const CATEGORIES = ['livres', 'essais', 'critiques', 'autres'];
 const METADATA_FILE = '.articles-metadata.json';
 const isWatchMode = process.argv.includes('--watch');
 
+// Scripts JavaScript pour toutes les pages
+const themeScript = `
+<script>
+// Script anti-flash : applique le thème immédiatement
+(function() {
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+})();
+
+// Gestion du thème
+function toggleTheme() {
+  const html = document.documentElement;
+  const currentTheme = html.getAttribute('data-theme');
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  
+  html.setAttribute('data-theme', newTheme);
+  localStorage.setItem('theme', newTheme);
+  
+  // Mise à jour des icônes
+  const sunIcon = document.querySelector('.sun-icon');
+  const moonIcon = document.querySelector('.moon-icon');
+  
+  if (newTheme === 'dark') {
+    sunIcon.style.display = 'none';
+    moonIcon.style.display = 'block';
+  } else {
+    sunIcon.style.display = 'block';
+    moonIcon.style.display = 'none';
+  }
+}
+
+// Initialisation complète du thème
+document.addEventListener('DOMContentLoaded', function() {
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  const html = document.documentElement;
+  const sunIcon = document.querySelector('.sun-icon');
+  const moonIcon = document.querySelector('.moon-icon');
+  const body = document.body;
+  
+  // Appliquer le thème
+  html.setAttribute('data-theme', savedTheme);
+  
+  // Mettre à jour les icônes
+  if (savedTheme === 'dark') {
+    sunIcon.style.display = 'none';
+    moonIcon.style.display = 'block';
+  } else {
+    sunIcon.style.display = 'block';
+    moonIcon.style.display = 'none';
+  }
+  
+  // Afficher le contenu avec transition
+  setTimeout(() => {
+    body.classList.add('theme-loaded');
+  }, 10);
+});
+</script>`;
+
+// Script inline pour le head (anti-flash immédiat)
+const headThemeScript = `
+<script>
+// Application immédiate du thème avant tout rendu
+(function() {
+  try {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  } catch(e) {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+})();
+</script>`;
+
+// Fonction pour créer le bouton de thème
+function createThemeButton() {
+  return `<!-- Bouton de basculement thème -->
+<button class="theme-toggle" onclick="toggleTheme()" title="Basculer entre mode sombre et clair">
+  <svg class="sun-icon" viewBox="0 0 24 24">
+    <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"/>
+  </svg>
+  <svg class="moon-icon" viewBox="0 0 24 24" style="display: none;">
+    <path d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z"/>
+  </svg>
+</button>`;
+}
+
 // Fonctions utilitaires
 function loadMetadata() {
   if (fs.existsSync(METADATA_FILE)) {
@@ -62,12 +147,15 @@ function createArticlePage(article) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>${article.title} - Blog Nemoscit</title>
+  ${headThemeScript}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+${createThemeButton()}
+
 <header>
   <div class="header-content">
     <h1 class="site-title"><a href="index.html" style="text-decoration: none; color: inherit;">Blog Nemoscit</a></h1>
@@ -104,6 +192,8 @@ function createArticlePage(article) {
     <p class="footer-text">&copy; 2024 Blog Minimaliste. Tous droits réservés.</p>
   </div>
 </footer>
+
+${themeScript}
 </body>
 </html>`;
 
@@ -190,12 +280,15 @@ function generateIndexHTML(articles) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Blog Nemoscit</title>
+  ${headThemeScript}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+${createThemeButton()}
+
 <header>
   <div class="header-content">
     <h1 class="site-title"><a href="index.html" style="text-decoration: none; color: inherit;">Blog Nemoscit</a></h1>
@@ -223,6 +316,8 @@ ${articlesHtml}
     <p class="footer-text">&copy; 2024 Blog Minimaliste. Tous droits réservés.</p>
   </div>
 </footer>
+
+${themeScript}
 </body>
 </html>`;
 
@@ -250,12 +345,15 @@ function generateCategoryHTML(articles, category) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>${category.charAt(0).toUpperCase() + category.slice(1)} - Blog Nemoscit</title>
+  ${headThemeScript}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+${createThemeButton()}
+
 <header>
   <div class="header-content">
     <h1 class="site-title"><a href="index.html" style="text-decoration: none; color: inherit;">Blog Nemoscit</a></h1>
@@ -284,6 +382,8 @@ ${articlesHtml}
     <p class="footer-text">&copy; 2024 Blog Minimaliste. Tous droits réservés.</p>
   </div>
 </footer>
+
+${themeScript}
 </body>
 </html>`;
 

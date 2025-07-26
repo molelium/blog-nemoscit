@@ -5,12 +5,12 @@ Un générateur de blog simple qui convertit des fichiers Markdown en pages HTML
 ## 🚀 Utilisation rapide
 
 ### Installation
-```bash
+     ```bash
 npm install
-```
+     ```
 
 ### Génération du site
-```bash
+     ```bash
 # Génération unique
 npm run build
 
