@@ -1,4 +1,9 @@
 {
+  "scripts": {
+    "build": "node clean_and_build.js",
+    "watch": "node clean_and_build.js --watch",
+    "dev": "node clean_and_build.js --watch"
+  },
   "dependencies": {
     "marked": "^16.1.1"
   }

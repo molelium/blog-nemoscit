@@ -1,50 +1,74 @@
-# Blog Minimaliste – Publication d'articles Markdown
+# Blog Nemoscit - Générateur de site statique
 
-## Poster un article
+Un générateur de blog simple qui convertit des fichiers Markdown en pages HTML avec détection automatique des modifications.
 
-1. **Écris ton article en Markdown**
-   - Utilise un éditeur de texte (VSCode, Typora, etc.)
-   - Sauvegarde-le dans le dossier `articles/` à la racine du projet
-   - **Important** : Commence ton article par un titre H1 (`# Mon titre`) ou H2 (`## Mon titre`)
+## 🚀 Utilisation rapide
 
-2. **Nom du fichier**
-   - Format : `AAAA-MM-JJ-categorie-titre.md`
-   - Exemples :
-     - `2024-05-01-livres-mon-article.md`
-     - `2024-05-02-critiques-un-film.md`
-     - `2024-05-03-essais-ma-reflexion.md`
-     - `2024-05-04-autres-divers.md`
-   - Les catégories valides sont : `livres`, `essais`, `critiques`, `autres`
+### Installation
+```bash
+npm install
+```
 
-3. **Publier l'article**
-   - Ouvre un terminal à la racine du projet
-   - Installe la dépendance si ce n'est pas déjà fait :
-     ```bash
-     npm install marked
-     ```
-   - Lance le script :
-     ```bash
-     node clean_and_build.js
-     ```
-   - Le script va :
-     - Convertir tous les articles `.md` en HTML
-     - Extraire automatiquement le titre du premier H1 ou H2
-     - Créer une page HTML dédiée pour chaque article
-     - Ajouter les articles sur la page d'accueil avec des liens cliquables
-     - Trier les articles du plus récent au plus ancien
-     - **Nettoyer automatiquement** les fichiers HTML pour éviter les doublons
+### Génération du site
+```bash
+# Génération unique
+npm run build
 
-4. **Navigation**
-   - Les articles sur la page d'accueil sont maintenant cliquables
-   - Cliquer sur un titre d'article ouvre sa page dédiée
-   - Chaque page d'article a sa propre URL (ex: `mon-article.html`)
+# Mode watch (surveillance continue)
+npm run watch
+```
 
----
+## 📝 Comment ajouter un article
 
-## Exemple de fichier Markdown
+1. **Créez un fichier Markdown** dans le dossier `articles/`
+2. **Nommez-le** : `YYYY-MM-DD-categorie-titre.md`
+   - Exemple : `2024-05-01-livres-mon-article.md`
+3. **Commencez par un titre** H1 (`# Mon titre`) ou H2 (`## Mon titre`)
+4. **Lancez la génération** : `npm run build`
+
+### Catégories disponibles
+- `livres` - Critiques de livres
+- `essais` - Réflexions et essais
+- `critiques` - Critiques d'art, films, etc.
+- `autres` - Divers
+
+## ✨ Fonctionnalités
+
+- ✅ **Conversion automatique** Markdown → HTML
+- ✅ **Extraction du titre** depuis le premier H1/H2
+- ✅ **Pages individuelles** pour chaque article
+- ✅ **Tri chronologique** automatique
+- ✅ **Détection des modifications** avec dates de mise à jour
+- ✅ **Mode watch** pour le développement
+- ✅ **Design responsive** et moderne
+- ✅ **Navigation complète** entre les pages
+
+## 📁 Structure du projet
+
+```
+blog-nemoscit/
+├── articles/           # Fichiers Markdown
+├── clean_and_build.js  # Script de génération
+├── styles.css         # Styles CSS
+├── index.html         # Page d'accueil (générée)
+├── livres.html        # Page catégorie (générée)
+├── essais.html        # Page catégorie (générée)
+├── critiques.html     # Page catégorie (générée)
+├── autres.html        # Page catégorie (générée)
+└── package.json       # Configuration npm
+```
+
+## 🔧 Scripts disponibles
+
+- `npm run build` - Génère le site une fois
+- `npm run watch` - Mode surveillance continue
+- `npm run dev` - Alias pour le mode watch
+
+## 📖 Exemple d'article
 
 ```markdown
 # Mon premier article
+
 Ceci est le contenu de mon article. Je peux utiliser **du gras**, *de l'italique*, des listes :
 
 - Point 1
@@ -56,28 +80,13 @@ Et même des images :
 ![Texte alternatif](chemin/vers/image.jpg)
 ```
 
-**Note** : Le titre principal (`# Mon premier article`) sera automatiquement extrait et utilisé comme titre de l'article.
+## 🛠️ Dépendances
 
----
-
-## Fonctionnalités
-
-- ✅ **Extraction automatique du titre** depuis le Markdown
-- ✅ **Pages HTML dédiées** pour chaque article
-- ✅ **Articles cliquables** sur la page d'accueil
-- ✅ **Tri chronologique** automatique
-- ✅ **Navigation complète** entre toutes les pages
-- ✅ **Design responsive** pour mobile et desktop
-- ✅ **Nettoyage automatique** des fichiers HTML
-- ✅ **Détection des modifications** avec dates de mise à jour
-
----
-
-## Dépendances
 - [Node.js](https://nodejs.org/)
-- [marked](https://www.npmjs.com/package/marked)
+- [marked](https://www.npmjs.com/package/marked) - Conversion Markdown
 
----
+## 📝 Notes
 
-## Questions ?
-N'hésite pas à demander si tu veux une autre organisation ou des fonctionnalités supplémentaires ! 
+- Les fichiers HTML sont générés automatiquement
+- Le cache des métadonnées est stocké dans `.articles-metadata.json`
+- Le mode watch surveille le dossier `articles/` en temps réel 

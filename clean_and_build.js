@@ -2,19 +2,16 @@ const fs = require('fs');
 const path = require('path');
 const marked = require('marked');
 
-// Configuration de marked pour préserver les sauts de ligne
-marked.setOptions({
-  breaks: true,
-  gfm: true
-});
+// Configuration
+marked.setOptions({ breaks: true, gfm: true });
 
 const ARTICLES_DIR = 'articles';
 const INDEX_HTML = 'index.html';
 const CATEGORIES = ['livres', 'essais', 'critiques', 'autres'];
-
-// Stockage des métadonnées des articles (pour détecter les modifications)
 const METADATA_FILE = '.articles-metadata.json';
+const isWatchMode = process.argv.includes('--watch');
 
+// Fonctions utilitaires
 function loadMetadata() {
   if (fs.existsSync(METADATA_FILE)) {
     try {
@@ -36,7 +33,6 @@ function getFileHash(filepath) {
 }
 
 function parseFilename(filename) {
-  // Ex: 2024-05-01-livres-mon-article.md
   const m = filename.match(/^(\d{4}-\d{2}-\d{2})-([a-z]+)-(.+)\.md$/);
   if (!m) return null;
   const [_, dateStr, category, slug] = m;
@@ -45,25 +41,20 @@ function parseFilename(filename) {
 }
 
 function extractTitleFromMarkdown(content) {
-  // Cherche le premier titre H1 (# Titre) et nettoie le contenu
   const titleMatch = content.match(/^#\s+(.+)$/m);
   if (titleMatch) {
     return titleMatch[1].trim().replace(/\s+/g, ' ');
   }
-  // Si pas de H1, cherche H2 (## Titre)
   const titleMatch2 = content.match(/^##\s+(.+)$/m);
   if (titleMatch2) {
     return titleMatch2[1].trim().replace(/\s+/g, ' ');
   }
-  // Sinon utilise le slug comme titre
   return null;
 }
 
+// Génération des pages HTML
 function createArticlePage(article) {
-  // Supprimer le titre du contenu HTML pour éviter le doublon
-  let contentHtml = article.html;
-  // Supprime le premier H1 ou H2 du contenu
-  contentHtml = contentHtml.replace(/<h[12][^>]*>.*?<\/h[12]>/s, '');
+  let contentHtml = article.html.replace(/<h[12][^>]*>.*?<\/h[12]>/s, '');
   
   const template = `<!DOCTYPE html>
 <html lang="fr">
@@ -106,6 +97,7 @@ function createArticlePage(article) {
   <div class="footer-content">
     <nav class="footer-nav">
       <a href="index.html" class="footer-link">Accueil</a>
+      <a href="${article.category}.html" class="footer-link">${article.category.charAt(0).toUpperCase() + article.category.slice(1)}</a>
       <a href="contact.html" class="footer-link">Contact</a>
       <a href="a-propos.html" class="footer-link">À propos</a>
     </nav>
@@ -115,9 +107,9 @@ function createArticlePage(article) {
 </body>
 </html>`;
 
-  const articleFilename = `${article.slug}.html`;
-  fs.writeFileSync(articleFilename, template, 'utf-8');
-  return articleFilename;
+  const filename = `${article.date.toISOString().split('T')[0]}-${article.category}-${article.slug}.html`;
+  fs.writeFileSync(filename, template, 'utf-8');
+  return filename;
 }
 
 function getArticles() {
@@ -126,6 +118,7 @@ function getArticles() {
   const metadata = loadMetadata();
   const files = fs.readdirSync(ARTICLES_DIR);
   const articles = [];
+  let hasChanges = false;
   
   for (const fname of files) {
     if (fname.endsWith('.md')) {
@@ -136,10 +129,20 @@ function getArticles() {
         const html = marked.parse(content);
         const title = extractTitleFromMarkdown(content) || meta.slug.replace(/-/g, ' ');
         
-        // Vérifie si l'article a été modifié
         const currentHash = getFileHash(filepath);
         const previousHash = metadata[fname]?.hash;
-        const modifiedDate = (currentHash !== previousHash && previousHash) ? new Date() : metadata[fname]?.modifiedDate;
+        const previousTitle = metadata[fname]?.title;
+        const isModified = currentHash !== previousHash || title !== previousTitle;
+        
+        if (isModified) {
+          hasChanges = true;
+          console.log(`📝 Article modifié: ${fname}`);
+          if (title !== previousTitle) {
+            console.log(`   Titre: "${previousTitle}" → "${title}"`);
+          }
+        }
+        
+        const modifiedDate = (isModified && previousHash) ? new Date() : metadata[fname]?.modifiedDate;
         
         articles.push({ 
           ...meta, 
@@ -148,7 +151,6 @@ function getArticles() {
           modifiedDate: modifiedDate ? new Date(modifiedDate) : null
         });
         
-        // Met à jour les métadonnées
         metadata[fname] = {
           hash: currentHash,
           title: title,
@@ -159,11 +161,13 @@ function getArticles() {
     }
   }
   
-  // Sauvegarde les métadonnées
   saveMetadata(metadata);
-  
-  // Tri du plus récent au plus ancien
   articles.sort((a, b) => b.date - a.date);
+  
+  if (hasChanges) {
+    console.log('🔄 Régénération des pages HTML...');
+  }
+  
   return articles;
 }
 
@@ -192,7 +196,6 @@ function generateIndexHTML(articles) {
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
 <header>
   <div class="header-content">
     <h1 class="site-title"><a href="index.html" style="text-decoration: none; color: inherit;">Blog Nemoscit</a></h1>
@@ -204,7 +207,6 @@ function generateIndexHTML(articles) {
     </nav>
   </div>
 </header>
-
 <main>
   <section class="articles-list">
     <div class="articles-grid">
@@ -212,7 +214,6 @@ ${articlesHtml}
     </div>
   </section>
 </main>
-
 <footer>
   <div class="footer-content">
     <nav class="footer-nav">
@@ -222,7 +223,6 @@ ${articlesHtml}
     <p class="footer-text">&copy; 2024 Blog Minimaliste. Tous droits réservés.</p>
   </div>
 </footer>
-
 </body>
 </html>`;
 
@@ -252,7 +252,7 @@ function generateCategoryHTML(articles, category) {
   <title>${category.charAt(0).toUpperCase() + category.slice(1)} - Blog Nemoscit</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -291,10 +291,35 @@ ${articlesHtml}
   console.log(`Page ${category}.html générée avec ${categoryArticles.length} articles`);
 }
 
-// Exécution principale
-const articles = getArticles();
-generateIndexHTML(articles);
+// Fonctions principales
+function buildSite() {
+  console.log('🚀 Génération du site...');
+  const articles = getArticles();
+  generateIndexHTML(articles);
 
-for (const category of CATEGORIES) {
-  generateCategoryHTML(articles, category);
+  for (const category of CATEGORIES) {
+    generateCategoryHTML(articles, category);
+  }
+  
+  console.log('✅ Site généré avec succès !');
+}
+
+function startWatchMode() {
+  console.log('👀 Mode watch activé - Surveillance des fichiers Markdown...');
+  console.log('Appuyez sur Ctrl+C pour arrêter');
+  
+  fs.watch(ARTICLES_DIR, { recursive: true }, (eventType, filename) => {
+    if (filename && filename.endsWith('.md')) {
+      console.log(`\n📁 Changement détecté: ${filename}`);
+      buildSite();
+    }
+  });
+}
+
+// Exécution
+if (isWatchMode) {
+  buildSite();
+  startWatchMode();
+} else {
+  buildSite();
 } 
