@@ -1,9 +1,6 @@
-/* Import des polices Poppins et Cormorant Garamond */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
 
-/* Variables CSS pour les thèmes */
 :root {
-  /* Light mode (par défaut) */
   --bg-primary: #fafafa;
   --bg-secondary: #ffffff;
   --text-primary: #2c2c2c;
@@ -16,7 +13,6 @@
 }
 
 [data-theme="dark"] {
-  /* Dark mode */
   --bg-primary: #1a1a1a;
   --bg-secondary: #2d2d2d;
   --text-primary: #e0e0e0;
@@ -28,24 +24,31 @@
   --link-hover: #ffffff;
 }
 
-/* Prévention du flash blanc - Application immédiate */
 html {
   background-color: var(--bg-primary);
   color: var(--text-primary);
   transition: background-color 0.3s ease, color 0.3s ease;
+  scroll-behavior: smooth;
 }
 
-/* Masquer le contenu jusqu'à ce que le thème soit appliqué */
 body {
   opacity: 0;
   transition: opacity 0.1s ease;
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  font-size: 16px;
+  font-weight: 400;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
 }
 
 body.theme-loaded {
   opacity: 1;
 }
 
-/* Appliquer le thème par défaut immédiatement */
 html[data-theme="dark"] {
   background-color: #1a1a1a;
   color: #e0e0e0;
@@ -56,31 +59,12 @@ html[data-theme="light"] {
   color: #2c2c2c;
 }
 
-/* Reset et base */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: 'Poppins', sans-serif;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-  line-height: 1.6;
-  font-size: 16px;
-  font-weight: 400;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-/* Bouton de basculement thème */
 .theme-toggle {
   position: fixed;
   top: 1rem;
@@ -111,7 +95,6 @@ body {
   transition: fill 0.3s ease;
 }
 
-/* Header */
 header {
   padding: 1.2rem 0;
   border-bottom: 1px solid var(--border-color);
@@ -174,14 +157,12 @@ header {
   width: 100%;
 }
 
-/* Grille d'articles - 1 par ligne */
 .articles-grid {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
-/* Cartes d'articles */
 .article-card {
   background: var(--bg-secondary);
   padding: 2rem;
@@ -227,7 +208,6 @@ header {
   transition: color 0.3s ease;
 }
 
-/* Footer */
 footer {
   margin-top: 4rem;
   padding: 2rem 0;
@@ -267,7 +247,6 @@ footer {
   transition: color 0.3s ease;
 }
 
-/* Article complet */
 .article-full {
   background: var(--bg-secondary);
   padding: 3rem;
@@ -387,7 +366,6 @@ footer {
   transition: color 0.3s ease;
 }
 
-/* Liens dans les cartes d'articles */
 .article-card .article-title a {
   color: inherit;
   text-decoration: none;
@@ -398,7 +376,6 @@ footer {
   color: var(--link-hover);
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   body {
     padding: 0 1rem;
@@ -428,7 +405,6 @@ footer {
     font-size: 2rem;
   }
   
-  /* Ajustement du bouton thème sur mobile */
   .theme-toggle {
     top: 0.5rem;
     left: 0.5rem;
@@ -481,7 +457,6 @@ footer {
     gap: 0.5rem;
   }
   
-  /* Bouton thème encore plus petit sur très petits écrans */
   .theme-toggle {
     top: 0.3rem;
     left: 0.3rem;
@@ -495,7 +470,6 @@ footer {
   }
 }
 
-/* Tablettes en mode paysage */
 @media (min-width: 769px) and (max-width: 1024px) {
   body {
     padding: 0 1.5rem;
@@ -510,7 +484,6 @@ footer {
   }
 }
 
-/* Grands écrans */
 @media (min-width: 1200px) {
   body {
     max-width: 1400px;

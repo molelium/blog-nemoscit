@@ -1,4 +1,8 @@
 {
+  "name": "blog-nemoscit",
+  "version": "1.0.0",
+  "description": "Générateur de blog statique simple",
+  "main": "clean_and_build.js",
   "scripts": {
     "build": "node clean_and_build.js",
     "watch": "node clean_and_build.js --watch",
@@ -6,5 +10,8 @@
   },
   "dependencies": {
     "marked": "^16.1.1"
-  }
+  },
+  "keywords": ["blog", "static", "markdown", "generator"],
+  "author": "Nemoscit",
+  "license": "MIT"
 }
