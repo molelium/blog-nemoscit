@@ -3,123 +3,125 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Mon Blog Minimaliste</title>
+  <title>Blog Minimaliste</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <header>
-  <h1 class="header-title">Mon Blog Minimaliste</h1>
-  <nav>
-    <a href="#" class="nav-link">Blog</a>
-    <a href="#" class="nav-link">À propos</a>
-    <a href="#" class="nav-link">Contact</a>
-  </nav>
-  <div class="search-container">
-    <input type="text" placeholder="Rechercher un article..." class="search-input">
-    <div class="search-bubble">🔍</div>
+  <div class="header-content">
+    <h1 class="site-title">Blog Minimaliste</h1>
+    <nav class="main-nav">
+      <a href="#essais" class="nav-link">Essais</a>
+      <a href="#critiques" class="nav-link">Critiques</a>
+      <a href="#livres" class="nav-link">Livres</a>
+      <a href="#autres" class="nav-link">Autres</a>
+    </nav>
   </div>
 </header>
 
 <main>
-  <!-- 3 derniers articles en colonnes -->
-  <section class="featured-articles">
-    <article class="featured-card">
-      <img src="assets/cover1.jpg" alt="Couverture article 1" class="featured-image">
-      <div class="featured-content">
-        <h3 class="featured-title">Créer un blog minimaliste</h3>
-        <p class="featured-description">Découvrez comment créer un blog élégant et épuré avec HTML et CSS. Un guide complet pour débuter.</p>
-        <time class="featured-date">25 décembre 2024</time>
-      </div>
-    </article>
-
-    <article class="featured-card">
-      <img src="assets/cover2.jpg" alt="Couverture article 2" class="featured-image">
-      <div class="featured-content">
-        <h3 class="featured-title">L'art du design épuré</h3>
-        <p class="featured-description">Pourquoi le minimalisme en design web améliore l'expérience utilisateur et comment l'appliquer.</p>
-        <time class="featured-date">22 décembre 2024</time>
-      </div>
-    </article>
-
-    <article class="featured-card">
-      <img src="assets/cover3.jpg" alt="Couverture article 3" class="featured-image">
-      <div class="featured-content">
-        <h3 class="featured-title">CSS moderne et flexible</h3>
-        <p class="featured-description">Maîtrisez Flexbox et Grid pour créer des mises en page responsives et modernes.</p>
-        <time class="featured-date">20 décembre 2024</time>
-      </div>
-    </article>
-  </section>
-
-  <!-- Liste des autres articles -->
   <section class="articles-list">
-    <article class="article-item">
-      <div class="article-header">
-        <h4 class="article-title">Optimiser les performances web</h4>
-        <time class="article-date">18 décembre 2024</time>
-      </div>
-      <p class="article-description">Techniques avancées pour améliorer la vitesse de chargement de votre site web et offrir une meilleure expérience utilisateur.</p>
-      <a href="#" class="read-more-btn">Read more</a>
-    </article>
-
-    <article class="article-item">
-      <div class="article-header">
-        <h4 class="article-title">Accessibilité web essentielle</h4>
-        <time class="article-date">15 décembre 2024</time>
-      </div>
-      <p class="article-description">Comment rendre votre site accessible à tous, avec des techniques pratiques et des outils pour tester l'accessibilité.</p>
-      <a href="#" class="read-more-btn">Read more</a>
-    </article>
-
-    <article class="article-item">
-      <div class="article-header">
-        <h4 class="article-title">Typographie pour le web</h4>
-        <time class="article-date">12 décembre 2024</time>
-      </div>
-      <p class="article-description">Choisir et utiliser les bonnes polices pour améliorer la lisibilité et l'esthétique de votre contenu web.</p>
-      <a href="#" class="read-more-btn">Read more</a>
-    </article>
-
-    <article class="article-item">
-      <div class="article-header">
-        <h4 class="article-title">JavaScript moderne en 2024</h4>
-        <time class="article-date">10 décembre 2024</time>
-      </div>
-      <p class="article-description">Les nouvelles fonctionnalités ES2024 et comment les utiliser pour écrire du code JavaScript plus efficace.</p>
-      <a href="#" class="read-more-btn">Read more</a>
-    </article>
-
-    <article class="article-item">
-      <div class="article-header">
-        <h4 class="article-title">Débuter avec Git et GitHub</h4>
-        <time class="article-date">8 décembre 2024</time>
-      </div>
-      <p class="article-description">Un guide complet pour maîtriser le contrôle de version avec Git et collaborer efficacement sur GitHub.</p>
-      <a href="#" class="read-more-btn">Read more</a>
-    </article>
+    <h2 class="category-title">Tous les articles</h2>
+    <div class="articles-grid">
+      <article class="article-card">
+        <div class="article-content">
+          <h3 class="article-title">Notes de voyage</h3>
+          <p class="article-excerpt">Impressions et réflexions lors d'un séjour dans les montagnes du Japon.</p>
+          <time class="article-date">30 janvier 2024</time>
+        </div>
+      </article>
+      <article class="article-card">
+        <div class="article-content">
+          <h3 class="article-title">Pensées du matin</h3>
+          <p class="article-excerpt">Quelques réflexions sur la créativité et l'inspiration au lever du jour.</p>
+          <time class="article-date">28 janvier 2024</time>
+        </div>
+      </article>
+      <article class="article-card">
+        <div class="article-content">
+          <h3 class="article-title">Lettre à un ami</h3>
+          <p class="article-excerpt">Une correspondance intime sur l'amitié et les liens qui nous unissent.</p>
+          <time class="article-date">25 janvier 2024</time>
+        </div>
+      </article>
+      <article class="article-card">
+        <div class="article-content">
+          <h3 class="article-title">Exposition : Minimalisme contemporain</h3>
+          <p class="article-excerpt">Une analyse critique de l'exposition qui redéfinit les codes du minimalisme dans l'art moderne.</p>
+          <time class="article-date">25 janvier 2024</time>
+        </div>
+      </article>
+      <article class="article-card">
+        <div class="article-content">
+          <h3 class="article-title">Film : Le Septième Sceau</h3>
+          <p class="article-excerpt">Bergman et sa quête métaphysique : comment le cinéma peut interroger l'existence divine.</p>
+          <time class="article-date">22 janvier 2024</time>
+        </div>
+      </article>
+      <article class="article-card">
+        <div class="article-content">
+          <h3 class="article-title">Concert : Philip Glass</h3>
+          <p class="article-excerpt">La musique répétitive comme méditation : une expérience sonore qui transcende le temps.</p>
+          <time class="article-date">20 janvier 2024</time>
+        </div>
+      </article>
+      <article class="article-card">
+        <div class="article-content">
+          <h3 class="article-title">L'art de la simplicité</h3>
+          <p class="article-excerpt">Comment le minimalisme peut transformer notre façon de vivre et de penser au quotidien.</p>
+          <time class="article-date">20 janvier 2024</time>
+        </div>
+      </article>
+      <article class="article-card">
+        <div class="article-content">
+          <h3 class="article-title">Le temps et la mémoire</h3>
+          <p class="article-excerpt">Une exploration philosophique de notre rapport au temps et à la construction de nos souvenirs.</p>
+          <time class="article-date">18 janvier 2024</time>
+        </div>
+      </article>
+      <article class="article-card">
+        <div class="article-content">
+          <h3 class="article-title">La beauté de l'imperfection</h3>
+          <p class="article-excerpt">Pourquoi l'imperfection et l'asymétrie peuvent être plus belles que la perfection géométrique.</p>
+          <time class="article-date">15 janvier 2024</time>
+        </div>
+      </article>
+      <article class="article-card">
+        <div class="article-content">
+          <h3 class="article-title">Le Petit Prince</h3>
+          <p class="article-excerpt">Une réflexion poétique sur l'amitié, l'amour et le sens de la vie à travers les yeux d'un enfant.</p>
+          <time class="article-date">15 janvier 2024</time>
+        </div>
+      </article>
+      <article class="article-card">
+        <div class="article-content">
+          <h3 class="article-title">1984</h3>
+          <p class="article-excerpt">Une dystopie visionnaire qui explore les dangers du totalitarisme et de la surveillance de masse.</p>
+          <time class="article-date">10 janvier 2024</time>
+        </div>
+      </article>
+      <article class="article-card">
+        <div class="article-content">
+          <h3 class="article-title">L'Étranger</h3>
+          <p class="article-excerpt">L'histoire de Meursault, un homme confronté à l'absurdité de l'existence et à la justice des hommes.</p>
+          <time class="article-date">5 janvier 2024</time>
+        </div>
+      </article>
+    </div>
   </section>
 </main>
 
 <footer>
   <div class="footer-content">
-    <div class="footer-nav">
-      <h3 class="footer-title">Navigation</h3>
-      <div class="footer-links">
-        <a href="#" class="footer-link">Blog</a>
-        <a href="#" class="footer-link">À propos</a>
-        <a href="#" class="footer-link">Contact</a>
-      </div>
-    </div>
-    
-    <div class="footer-search">
-      <label class="footer-search-label">Rechercher dans le blog</label>
-      <input type="text" placeholder="Tapez votre recherche..." class="footer-search-input">
-    </div>
-    
-    <div class="footer-copyright">
-      &copy; 2024 Mon Blog Minimaliste. Fait avec ❤️
-    </div>
+    <nav class="footer-nav">
+      <a href="#contact" class="footer-link">Contact</a>
+      <a href="#a-propos" class="footer-link">À propos</a>
+    </nav>
+    <p class="footer-text">&copy; 2024 Blog Minimaliste. Tous droits réservés.</p>
   </div>
 </footer>
 
