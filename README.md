@@ -5,6 +5,7 @@
 1. **Écris ton article en Markdown**
    - Utilise un éditeur de texte (VSCode, Typora, etc.)
    - Sauvegarde-le dans le dossier `articles/` à la racine du projet
+   - **Important** : Commence ton article par un titre H1 (`# Mon titre`) ou H2 (`## Mon titre`)
 
 2. **Nom du fichier**
    - Format : `AAAA-MM-JJ-categorie-titre.md`
@@ -25,12 +26,17 @@
      ```bash
      node build_articles.js
      ```
-   - Tous les articles `.md` du dossier `articles/` seront convertis en HTML et publiés automatiquement sur la page d'accueil (`index.html`), du plus récent au plus ancien.
+   - Le script va :
+     - Convertir tous les articles `.md` en HTML
+     - Extraire automatiquement le titre du premier H1 ou H2
+     - Créer une page HTML dédiée pour chaque article
+     - Ajouter les articles sur la page d'accueil avec des liens cliquables
+     - Trier les articles du plus récent au plus ancien
 
-4. **Astuces**
-   - Utilise la syntaxe Markdown standard pour les titres, listes, images, liens, etc.
-   - La date et la catégorie sont extraites du nom du fichier.
-   - Pour modifier un article, édite simplement le fichier `.md` puis relance le script.
+4. **Navigation**
+   - Les articles sur la page d'accueil sont maintenant cliquables
+   - Cliquer sur un titre d'article ouvre sa page dédiée
+   - Chaque page d'article a sa propre URL (ex: `mon-article.html`)
 
 ---
 
@@ -43,10 +49,24 @@ Ceci est le contenu de mon article. Je peux utiliser **du gras**, *de l'italique
 - Point 1
 - Point 2
 
+## Sous-section
 Et même des images :
 
 ![Texte alternatif](chemin/vers/image.jpg)
 ```
+
+**Note** : Le titre principal (`# Mon premier article`) sera automatiquement extrait et utilisé comme titre de l'article.
+
+---
+
+## Fonctionnalités
+
+- ✅ **Extraction automatique du titre** depuis le Markdown
+- ✅ **Pages HTML dédiées** pour chaque article
+- ✅ **Articles cliquables** sur la page d'accueil
+- ✅ **Tri chronologique** automatique
+- ✅ **Navigation complète** entre toutes les pages
+- ✅ **Design responsive** pour mobile et desktop
 
 ---
 
