@@ -2,6 +2,12 @@ const fs = require('fs');
 const path = require('path');
 const marked = require('marked');
 
+// Configuration de marked pour préserver les sauts de ligne
+marked.setOptions({
+  breaks: true,
+  gfm: true
+});
+
 const ARTICLES_DIR = 'articles';
 const INDEX_HTML = 'index.html';
 const CATEGORIES = ['livres', 'essais', 'critiques', 'autres'];
@@ -112,12 +118,16 @@ function injectArticles(articles) {
     console.error("Impossible de trouver la section articles-grid dans index.html");
     return;
   }
+  
   // Génère le HTML pour chaque article
   let articlesHtml = '';
   for (const art of articles) {
     const articlePage = createArticlePage(art);
-    articlesHtml += `\n<article class="article-card" data-category="${art.category}">\n  <div class="article-content">\n    <h3 class="article-title"><a href="${articlePage}" style="text-decoration: none; color: inherit;">${art.title}</a></h3>\n    <p class="article-excerpt">${art.html.replace(/<[^>]*>/g, '').substring(0, 150)}...</p>\n    <div class="article-date">${art.date.toLocaleDateString('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' })}</div>\n  </div>\n</article>\n`;
+    // Crée un extrait propre (sans HTML, max 150 caractères)
+    const excerpt = art.html.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim().substring(0, 150);
+    articlesHtml += `\n<article class="article-card" data-category="${art.category}">\n  <div class="article-content">\n    <h3 class="article-title"><a href="${articlePage}" style="text-decoration: none; color: inherit;">${art.title}</a></h3>\n    <p class="article-excerpt">${excerpt}${excerpt.length >= 150 ? '...' : ''}</p>\n    <div class="article-date">${art.date.toLocaleDateString('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' })}</div>\n  </div>\n</article>\n`;
   }
+  
   // Remplace le contenu
   html = html.replace(pattern, `$1\n${articlesHtml}\n$3`);
   fs.writeFileSync(INDEX_HTML, html, 'utf-8');
