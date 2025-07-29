@@ -112,7 +112,7 @@ header {
 
 .header-top {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   width: 100%;
   max-width: 800px;
@@ -155,6 +155,7 @@ header {
 .mobile-menu-spacer {
   width: 30px;
   visibility: hidden;
+  display: none;
 }
 
 .site-title {
@@ -429,8 +430,16 @@ footer {
     padding: 0 1rem;
   }
   
+  .header-top {
+    justify-content: space-between;
+  }
+  
   .mobile-menu-toggle {
     display: flex;
+  }
+  
+  .mobile-menu-spacer {
+    display: block;
   }
   
   .site-title {
