@@ -36,6 +36,14 @@ function toggleTheme() {
   }
 }
 
+function toggleMobileMenu() {
+  const nav = document.getElementById('main-nav');
+  const toggle = document.querySelector('.mobile-menu-toggle');
+  
+  nav.classList.toggle('nav-open');
+  toggle.classList.toggle('active');
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   const savedTheme = localStorage.getItem('theme') || 'light';
   const html = document.documentElement;
@@ -142,8 +150,16 @@ ${createThemeButton()}
 
 <header>
   <div class="header-content">
-    <h1 class="site-title"><a href="index.html" style="text-decoration: none; color: inherit;">Blog Nemoscit</a></h1>
-    <nav class="main-nav">
+    <div class="header-top">
+      <div class="mobile-menu-spacer"></div>
+      <h1 class="site-title"><a href="index.html" style="text-decoration: none; color: inherit;">Nemoscit</a></h1>
+      <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" title="Menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+    <nav class="main-nav" id="main-nav">
       <a href="essais.html" class="nav-link">Essais</a>
       <a href="critiques.html" class="nav-link">Critiques</a>
       <a href="livres.html" class="nav-link">Livres</a>
@@ -275,8 +291,16 @@ ${createThemeButton()}
 
 <header>
   <div class="header-content">
-    <h1 class="site-title"><a href="index.html" style="text-decoration: none; color: inherit;">Blog Nemoscit</a></h1>
-    <nav class="main-nav">
+    <div class="header-top">
+      <div class="mobile-menu-spacer"></div>
+      <h1 class="site-title"><a href="index.html" style="text-decoration: none; color: inherit;">Blog Nemoscit</a></h1>
+      <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" title="Menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+    <nav class="main-nav" id="main-nav">
       <a href="essais.html" class="nav-link">Essais</a>
       <a href="critiques.html" class="nav-link">Critiques</a>
       <a href="livres.html" class="nav-link">Livres</a>
@@ -340,8 +364,16 @@ ${createThemeButton()}
 
 <header>
   <div class="header-content">
-    <h1 class="site-title"><a href="index.html" style="text-decoration: none; color: inherit;">Blog Nemoscit</a></h1>
-    <nav class="main-nav">
+    <div class="header-top">
+      <div class="mobile-menu-spacer"></div>
+      <h1 class="site-title"><a href="index.html" style="text-decoration: none; color: inherit;">Blog Nemoscit</a></h1>
+      <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" title="Menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+    <nav class="main-nav" id="main-nav">
       <a href="essais.html" class="nav-link">Essais</a>
       <a href="critiques.html" class="nav-link">Critiques</a>
       <a href="livres.html" class="nav-link">Livres</a>
